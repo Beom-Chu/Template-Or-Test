@@ -7,7 +7,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 
 import java.time.LocalDateTime;
 
-@Configuration
+//@Configuration
 @RequiredArgsConstructor
 public class SimpleMessageSender {
 

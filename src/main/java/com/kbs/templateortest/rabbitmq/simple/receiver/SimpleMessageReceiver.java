@@ -7,7 +7,7 @@ import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class SimpleMessageReceiver {
 
     @RabbitListener(bindings = @QueueBinding(

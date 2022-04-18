@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * * 하나의 Exchange에서 여러개의 Queue로 분배 가능 (주석 부분)
  */
-@Configuration
+//@Configuration
 @Getter
 public class AmqpBindingConfig {
 

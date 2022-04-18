@@ -3,7 +3,7 @@ package com.kbs.templateortest.rabbitmq.template.receiver;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class AmqpMessageReceiver {
 
     @RabbitListener(queues = "queue-test-1")

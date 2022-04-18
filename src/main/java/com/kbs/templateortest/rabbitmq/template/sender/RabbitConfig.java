@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * RabbitTemplate serialize 를 위한 설정
  */
-@Configuration
+//@Configuration
 public class RabbitConfig {
 
     @Bean
