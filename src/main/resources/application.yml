@@ -1,6 +1,22 @@
 spring:
+  config:
+    activate:
+      on-profile: default
+
   rabbitmq:
     host: localhost
     port: 5672
     username: root
     password: root
+
+application:
+  test: kbs-def
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+application:
+  test: kbs-loc
