@@ -9,6 +9,10 @@ spring:
     username: root
     password: root
 
+  mongodb:
+    host: localhost
+    port: 27017
+
 application:
   test: kbs-def
 
