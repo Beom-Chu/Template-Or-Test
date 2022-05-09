@@ -1,5 +1,6 @@
 package com.kbs.templateortest.property;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -28,7 +29,14 @@ public class PropertyTest {
 
     @Value("${application.test}")
     private String applicationTest;
-    
+
+    // @Value 사용 프로퍼티 미설정 오류 방지를 위한 default 값 설정 테스트
+    @Value("${ums.api.baseUrl:ums.api.baseUrl is undefined.}")
+    String umsApiBaseUrl;
+    @Value("${ums.api.key:ums.api.key is undefined.}")
+    String umsApiKey;
+    @Value("${ums.api.secret:ums.api.secret is undefined.}")
+    String umsApiSecret;
 
     @Test
     public void testEnvironment() {
@@ -68,5 +76,13 @@ public class PropertyTest {
     public void testValue(){
         System.out.println("[[[profile = " + profile);
         System.out.println("[[[applicationTest = " + applicationTest);
+    }
+
+    @Test
+    @DisplayName("@Value 사용 프로퍼티 미설정 오류 방지를 위한 default 값 설정 테스트")
+    public void testUndefinedValue(){
+        System.out.println("[[[umsApiBaseUrl = " + umsApiBaseUrl);
+        System.out.println("[[[umsApiKey = " + umsApiKey);
+        System.out.println("[[[umsApiSecret = " + umsApiSecret);
     }
 }
