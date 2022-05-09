@@ -41,6 +41,9 @@ dependencies {
 
     //mongodb 관련 라이브러리
     implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
+
+    // Unirest 관련 라이브러리
+    implementation 'com.konghq:unirest-java:3.13.8'
 }
 
 tasks.named('test') {
