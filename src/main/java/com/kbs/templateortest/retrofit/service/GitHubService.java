@@ -1,7 +1,7 @@
 package com.kbs.templateortest.retrofit.service;
 
 
-import com.kbs.templateortest.retrofit.dto.Repo;
+import com.kbs.templateortest.githubapi.dto.Repo;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;

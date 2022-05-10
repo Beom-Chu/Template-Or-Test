@@ -2,7 +2,7 @@ package com.kbs.templateortest.retrofit.service;
 
 
 
-import com.kbs.templateortest.retrofit.dto.Repo;
+import com.kbs.templateortest.githubapi.dto.Repo;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import retrofit2.Call;

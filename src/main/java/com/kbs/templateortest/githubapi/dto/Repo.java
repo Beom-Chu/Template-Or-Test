@@ -1,4 +1,4 @@
-package com.kbs.templateortest.retrofit.dto;
+package com.kbs.templateortest.githubapi.dto;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.AllArgsConstructor;
