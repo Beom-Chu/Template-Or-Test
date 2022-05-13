@@ -1,6 +1,7 @@
 package com.kbs.templateortest.etc;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpStatus;
 
 public class StringTest {
 
@@ -26,5 +27,22 @@ public class StringTest {
         System.out.println("[[[(str1 == str3) = " + (str1 == str3));
         System.out.println("[[[(str1.equals(str3)) = " + (str1.equals(str3)));
 
+    }
+
+    @Test
+    public void test2(){
+        String str = (String) null;
+        if(str == null) {
+            System.out.println("null");
+        } else {
+            System.out.println("not null");
+        }
+
+        String str2 = str.toString();
+        if(str2 == null) {
+            System.out.println("null");
+        } else {
+            System.out.println("not null");
+        }
     }
 }
