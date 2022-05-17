@@ -1,6 +1,8 @@
 package com.kbs.templateortest.etc;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.internal.matchers.Null;
 import org.springframework.http.HttpStatus;
 
 public class StringTest {
@@ -44,5 +46,15 @@ public class StringTest {
         } else {
             System.out.println("not null");
         }
+    }
+
+    @Test
+    public void test3(){
+        Long l = null;
+
+        String s1 = String.valueOf(l);
+        System.out.println("[[[s1 = " + s1);
+        String s2 = l.toString();
+        System.out.println("[[[s2 = " + s2);
     }
 }
