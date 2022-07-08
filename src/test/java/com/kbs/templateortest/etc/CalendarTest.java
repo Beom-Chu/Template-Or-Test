@@ -8,7 +8,7 @@ import java.time.ZonedDateTime;
 import java.util.Arrays;
 import java.util.TimeZone;
 
-public class Calendar {
+public class CalendarTest {
 
     @Test
     public void test() {

@@ -5,7 +5,7 @@ import org.springframework.aop.aspectj.MethodInvocationProceedingJoinPoint;
 
 import java.util.regex.Matcher;
 
-public class Pattern {
+public class PatternTest {
     @Test
     public void test() {
 
