@@ -1,5 +1,8 @@
 package com.kbs.templateortest.etc;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.Data;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.internal.matchers.Null;
@@ -56,5 +59,20 @@ public class StringTest {
         System.out.println("[[[s1 = " + s1);
         String s2 = l.toString();
         System.out.println("[[[s2 = " + s2);
+    }
+
+    @Test
+    public void test4() throws JsonProcessingException {
+        InDto inDto = new InDto();
+        inDto.setBody("teststring");
+
+        System.out.println("[[[testData = " + inDto.toString());
+        String strInDto = new ObjectMapper().writeValueAsString(inDto);
+        System.out.println("[[[strInDto = " + strInDto);
+    }
+
+    @Data
+    class InDto {
+        String body;
     }
 }
