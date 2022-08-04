@@ -16,6 +16,20 @@ spring:
 application:
   test: kbs-def
 
+config:
+  properties:
+    users:
+      - name: kbs
+        age: 20
+      - name: ljs
+        age: 15
+      - name: ksy
+        age: 10
+    contact:
+      mail: abcd@test.com
+      tel: 123-4567-8910
+
+
 ---
 spring:
   config:
@@ -24,3 +38,4 @@ spring:
 
 application:
   test: kbs-loc
+
