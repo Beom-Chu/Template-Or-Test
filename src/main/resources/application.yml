@@ -13,6 +13,16 @@ spring:
     host: localhost
     port: 27017
 
+  redis:
+    lettuce:
+      pool:
+        max-active: 5 # 풀에 할당될 수 있는 커넥션 최대수 (음수=무제한)
+        max-idle: 5   # 풀의 idle 커넥션 최대수(음수=무제한)
+        min-idle: 2   # 풀에서 관리하는 idle 커넥션 최소 수
+    host: localhost
+    port: 6379
+    password: 123456
+
 application:
   test: kbs-def
 

@@ -55,6 +55,10 @@ dependencies {
     // guava 라이브러리
     implementation group: 'com.google.guava', name: 'guava', version: '31.1-jre'
 
+    // redis 라이브러리
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+
 }
 
 tasks.named('test') {
