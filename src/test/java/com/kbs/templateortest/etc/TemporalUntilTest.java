@@ -24,4 +24,11 @@ public class TemporalUntilTest {
         System.out.println(nowZero.until(comparisonDate, ChronoUnit.DAYS));
         System.out.println(testDate.until(comparisonDate, ChronoUnit.DAYS));
     }
+
+    @Test
+    void timeTest(){
+        String effectiveFromDatetime = "2022-06-30T23:59:59.999999999Z";
+        ZonedDateTime zonedDateTime = ZonedDateTime.parse(effectiveFromDatetime);
+        System.out.println("[[[zonedDateTime = " + zonedDateTime);
+    }
 }
