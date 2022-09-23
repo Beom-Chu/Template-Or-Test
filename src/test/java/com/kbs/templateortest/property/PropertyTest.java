@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
+import org.springframework.test.context.ActiveProfiles;
 
 /* 다양한 방법으로 프로퍼티 가져오기 가능
 * Environment, ApplicationContext, @Value
@@ -16,6 +17,7 @@ import org.springframework.core.env.Environment;
 //--spring.profiles.active=local
 
 @SpringBootTest
+//@ActiveProfiles("local") /* 테스트시 profile 선택 */
 public class PropertyTest {
 
     @Autowired
@@ -84,5 +86,10 @@ public class PropertyTest {
         System.out.println("[[[umsApiBaseUrl = " + umsApiBaseUrl);
         System.out.println("[[[umsApiKey = " + umsApiKey);
         System.out.println("[[[umsApiSecret = " + umsApiSecret);
+    }
+
+    @Test
+    public void testActiveProfiles() {
+
     }
 }
