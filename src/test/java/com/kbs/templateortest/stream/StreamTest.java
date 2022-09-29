@@ -3,6 +3,7 @@ package com.kbs.templateortest.stream;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.commons.lang3.ObjectUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -82,5 +83,42 @@ public class StreamTest {
     static class User {
         Integer id;
         String name;
+        String name2;
+
+        public User(Integer id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+    }
+
+
+    @Test
+    public void test1(){
+        List<User> users = new ArrayList<>();
+        users.add(new User(1,"kbs"));
+        users.add(new User(2,"ljs"));
+
+        List<String> names = users.stream().map(User::getName).collect(Collectors.toList());
+
+        System.out.println("[[[names = " + names);
+
+        List<User> users2 = new ArrayList<>();
+        users2.add(new User(3,null));
+        users2.add(new User(4,null));
+
+        List<String> names2 = users2.stream().map(User::getName).collect(Collectors.toList());
+
+        System.out.println("[[[names2 = " + names2);
+
+
+        List<User> users3 = new ArrayList<>();
+        users3.add(new User(5, null, "kim"));
+        users3.add(new User(6, null, "lee"));
+        users3.add(new User(7, "jb", "bae"));
+        users3.add(new User(8, "", "you"));
+
+        List<String> names3 = users3.stream().map(o-> ObjectUtils.isEmpty(o.getName()) ? o.getName2() : o.getName()).collect(Collectors.toList());
+
+        System.out.println("[[[names3 = " + names3);
     }
 }
