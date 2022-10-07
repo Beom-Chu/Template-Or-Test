@@ -91,6 +91,27 @@ public class StreamTest {
         }
     }
 
+    @DisplayName("Collectors.joining 사용")
+    @Test
+    public void testJoining() {
+        List<Integer> numbers = Arrays.asList(1,2,3,4,5,6,7,8,9);
+
+        String joining = numbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(",", "(", ")"));
+
+        System.out.println("[[[joining = " + joining);
+
+
+        List<Integer> EmptyNumbers = new ArrayList<>();
+
+        String EmptyJoining = EmptyNumbers.stream()
+                .map(String::valueOf)
+                .collect(Collectors.joining(",", "(", ")"));
+
+        System.out.println("[[[빈값 joining = " + EmptyJoining);
+    }
+
 
     @Test
     public void test1(){
