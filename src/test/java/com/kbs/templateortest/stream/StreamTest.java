@@ -155,6 +155,17 @@ public class StreamTest {
         }
         System.out.println();
 
+        List<User> sorted4 = users.stream()
+                .sorted(Comparator.comparing(User::getName)
+                        .thenComparing(User::getId).reversed())
+                .collect(Collectors.toList());
+
+        System.out.println("sorted2 = name, 역순 id 정렬");
+        for(User user : sorted4) {
+            System.out.println(user);
+        }
+        System.out.println();
+
     }
 
 
