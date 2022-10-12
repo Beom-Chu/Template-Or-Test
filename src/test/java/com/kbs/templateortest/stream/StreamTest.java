@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
@@ -112,6 +113,52 @@ public class StreamTest {
         System.out.println("[[[빈값 joining = " + EmptyJoining);
     }
 
+    @DisplayName("sorted 사용 - 조건 여러개 thenComparing")
+    @Test
+    public void testSorted() {
+        List<User> users = new ArrayList<>();
+        users.add(new User(1,"kbs"));
+        users.add(new User(3,"ksy"));
+        users.add(new User(6,"ljs"));
+        users.add(new User(2,"ljs"));
+        users.add(new User(5,"ljs"));
+        users.add(new User(4,"kdy"));
+
+        List<User> sorted1 = users.stream()
+                .sorted(Comparator.comparing(User::getId))
+                .collect(Collectors.toList());
+
+        System.out.println("sorted1 => id 정렬");
+        for(User user : sorted1) {
+            System.out.println(user);
+        }
+        System.out.println();
+
+        List<User> sorted2 = users.stream()
+                .sorted(Comparator.comparing(User::getName))
+                .collect(Collectors.toList());
+
+        System.out.println("sorted2 = name 정렬");
+        for(User user : sorted2) {
+            System.out.println(user);
+        }
+        System.out.println();
+
+        List<User> sorted3 = users.stream()
+                .sorted(Comparator.comparing(User::getName)
+                        .thenComparing(User::getId))
+                .collect(Collectors.toList());
+
+        System.out.println("sorted2 = name, id 정렬");
+        for(User user : sorted3) {
+            System.out.println(user);
+        }
+        System.out.println();
+
+    }
+
+
+
 
     @Test
     public void test1(){
@@ -142,4 +189,5 @@ public class StreamTest {
 
         System.out.println("[[[names3 = " + names3);
     }
+
 }
