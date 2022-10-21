@@ -2,8 +2,7 @@ package com.kbs.templateortest.etc;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class ListTest {
 
@@ -22,5 +21,16 @@ public class ListTest {
 
         System.out.println("[[[list = " + list);
 
+    }
+
+    @Test
+    public void test2() {
+        Set<String> set = new HashSet<>();
+        set.add("aaa");
+        set.add("bbb");
+        set.add("ccc");
+        List<String> list = new ArrayList<>(set);
+
+        System.out.println("[[[list = " + list);
     }
 }
