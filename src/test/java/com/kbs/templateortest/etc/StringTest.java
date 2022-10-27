@@ -75,4 +75,16 @@ public class StringTest {
     class InDto {
         String body;
     }
+
+    @Test
+    public void NullTest() {
+        InDto inDto = null;
+//        System.out.println("[[[inDto.toString() = " + inDto.toString());
+        System.out.println("[[[String.valueOf(inDto) = " + String.valueOf(inDto));
+
+//        inDto = new InDto();
+
+//        System.out.println("[[[inDto.body.toString() = " + inDto.body.toString());
+        System.out.println("[[[String.valueOf(inDto.body) = " + String.valueOf(inDto.body));
+    }
 }

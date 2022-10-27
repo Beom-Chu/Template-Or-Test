@@ -2,11 +2,14 @@ package com.kbs.templateortest.etc;
 
 import org.junit.jupiter.api.Test;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.TimeZone;
 
 public class CalendarTest {
@@ -97,5 +100,23 @@ public class CalendarTest {
         ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(calendar.toInstant(), TimeZone.getDefault().toZoneId()).with(LocalTime.MIN);
 
         System.out.println("[[[zonedDateTime = " + zonedDateTime);
+    }
+
+    @Test
+    public void test5() {
+
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date now = new Date();
+
+        String stringNow = simpleDateFormat.format(now);
+
+        DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.S");
+
+        ZonedDateTime activityFromDatetime = ZonedDateTime.parse(stringNow + " 00:00:00.0", df.withZone(ZoneId.systemDefault())).with(LocalTime.MIN);
+        ZonedDateTime activityToDatetime = ZonedDateTime.parse(stringNow + " 00:00:00.0", df.withZone(ZoneId.systemDefault())).with(LocalTime.MAX);
+
+        System.out.println("[[[activityFromDatetime = " + activityFromDatetime);
+        System.out.println("[[[activityToDatetime = " + activityToDatetime);
+
     }
 }
