@@ -23,6 +23,15 @@ spring:
     port: 6379
     password: 123456
 
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      properties[max.block.ms]: 1000
+    consumer:
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+      auto-offset-reset: earliest
+
 application:
   test: kbs-def
 
@@ -38,6 +47,11 @@ config:
     contact:
       mail: abcd@test.com
       tel: 123-4567-8910
+
+kafka:
+  topic:
+    str: test.string.topic
+    usr: test.user.topic
 
 
 ---
