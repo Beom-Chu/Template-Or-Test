@@ -6,41 +6,44 @@ Docker-compose 알아보기 : (https://github.com/Beom-Chu/Study/blob/main/etc/D
 
 1. Docker-compose yaml 파일 생성
  ```yaml
-version: '3.8'
+version: '2'
 services:
-  zookeeper-1:
-    image: confluentinc/cp-zookeeper:5.5.1
-    ports:
-      - '32181:32181'
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 32181
-      ZOOKEEPER_TICK_TIME: 2000
+   zookeeper:
+      image: confluentinc/cp-zookeeper:latest
+      environment:
+         ZOOKEEPER_SERVER_ID: 1
+         ZOOKEEPER_CLIENT_PORT: 2181
+         ZOOKEEPER_TICK_TIME: 2000
+         ZOOKEEPER_INIT_LIMIT: 5
+         ZOOKEEPER_SYNC_LIMIT: 2
+      ports:
+         - "22181:2181"
 
-  kafka-1:
-    image: confluentinc/cp-kafka:5.5.1
-    ports:
-      - '9092:9092'
-    depends_on:
-      - zookeeper-1
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: zookeeper-1:32181
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT
-      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka-1:29092,EXTERNAL://localhost:9092
-      KAFKA_DEFAULT_REPLICATION_FACTOR: 3
-      KAFKA_NUM_PARTITIONS: 3
-      
-  kafka-ui:
-    image: provectuslabs/kafka-ui
-    container_name: kafka-ui
-    ports:
-      - "8081:8080"
-    restart: always
-    environment:
-      - KAFKA_CLUSTERS_0_NAME=local
-      - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka-1:29092
-      - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper-1:22181
+   kafka:
+      image: confluentinc/cp-kafka:latest
+      depends_on:
+         - zookeeper
+      ports:
+         - "29092:29092"
+      environment:
+         KAFKA_BROKER_ID: 1
+         KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+         KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,PLAINTEXT_HOST://localhost:29092
+         KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+         KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+         KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+         KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+
+   kafka-ui:
+      image: provectuslabs/kafka-ui
+      container_name: kafka-ui
+      ports:
+         - "8081:8080"
+      restart: always
+      environment:
+         - KAFKA_CLUSTERS_0_NAME=local
+         - KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS=kafka:9092
+         - KAFKA_CLUSTERS_0_ZOOKEEPER=zookeeper:2181
 ```
 2. docker-compose 서비스 실행
 
