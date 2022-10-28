@@ -17,14 +17,14 @@ public class KafkaSenderTest {
     @Test
     public void testString() {
 
-        String str = "hello!!";
+        String str = "hello!!" + Math.random();
         kafkaSender.sender(str);
     }
 
     @Test
     public void testStringKey() {
 
-        String str = "hello!!";
+        String str = "hello!!" + Math.random();
         kafkaSender.senderKey(str);
     }
 
@@ -40,5 +40,8 @@ public class KafkaSenderTest {
 
         UserDto dto = new UserDto(1, "kbs", 36, LocalDateTime.now());
         kafkaSender.senderKey(dto);
+
+        UserDto dto2 = new UserDto(1, "kbs", 36, LocalDateTime.now());
+        kafkaSender.senderKey(dto2);
     }
 }
