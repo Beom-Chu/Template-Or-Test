@@ -15,13 +15,13 @@ public class KafkaReceiver {
         return new JsonMessageConverter();
     }
 
-    @KafkaListener(id = "testStringConsumer", topics = "${kafka.topic.str}")
+//    @KafkaListener(id = "testStringConsumer", topics = "${kafka.topic.str}")
     public void receiverString(String str) {
         System.out.println("[[[start KafkaReceiver.receiverString!!");
         System.out.println("[[[str = " + str);
     }
 
-    @KafkaListener(id = "testUserConsumer", topics = "${kafka.topic.usr}")
+//    @KafkaListener(id = "testUserConsumer", topics = "${kafka.topic.usr}")
     public void receiverUser(UserDto dto) {
         System.out.println("[[[start KafkaReceiver.receiverUser!!");
         System.out.println("[[[dto = " + dto);
