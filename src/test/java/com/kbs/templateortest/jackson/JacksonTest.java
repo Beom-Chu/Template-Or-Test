@@ -8,6 +8,7 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.HttpEntity;
 
 import java.io.File;
 import java.io.IOException;
@@ -98,5 +99,22 @@ class JacksonTest {
         Map<String, Object> stringObjectMap = mapper.readValue(jsonString, new TypeReference<Map<String, Object>>() {});
 
         System.out.println("[[[stringObjectMap = " + stringObjectMap);
+    }
+
+
+    @Test
+    @DisplayName("에러 재현 : com.fasterxml.jackson.databind.exc.MismatchedInputException: No content to map due to end-of-input")
+    public void testJsonStringBlankToList() throws JsonProcessingException {
+
+
+        HttpEntity<String> httpEntity = new HttpEntity<>("abc");
+
+        System.out.println("[[[httpEntity = " + httpEntity);
+
+        String jsonString = "";
+
+        List<Object> members = mapper.readValue(jsonString, new TypeReference<>() {});
+
+        System.out.println("[[[members = " + members);
     }
 }
