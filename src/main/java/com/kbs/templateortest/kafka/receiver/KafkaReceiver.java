@@ -1,19 +1,12 @@
 package com.kbs.templateortest.kafka.receiver;
 
+import com.kbs.templateortest.kafka.dto.ConstructorTestDto;
 import com.kbs.templateortest.kafka.dto.UserDto;
-import org.springframework.context.annotation.Bean;
 import org.springframework.kafka.annotation.KafkaListener;
-import org.springframework.kafka.support.converter.JsonMessageConverter;
-import org.springframework.kafka.support.converter.RecordMessageConverter;
 import org.springframework.stereotype.Component;
 
 @Component
 public class KafkaReceiver {
-
-    @Bean
-    public RecordMessageConverter converter() {
-        return new JsonMessageConverter();
-    }
 
 //    @KafkaListener(id = "testStringConsumer", topics = "${kafka.topic.str}")
     public void receiverString(String str) {
@@ -27,4 +20,10 @@ public class KafkaReceiver {
         System.out.println("[[[dto = " + dto);
     }
 
+    // 메시지 객체에 생성자만 존재시 에러 발생 재현
+//    @KafkaListener(id = "testConstructorDto", topics = "${kafka.topic.constructorTest}")
+    public void receiverConstructorDtoTest(ConstructorTestDto dto) {
+
+        System.out.println("[[[dto = " + dto);
+    }
 }

@@ -65,8 +65,7 @@ kafka:
   topic:
     str: test.string.topic
     usr: test.user.topic
-
-
+    constructorTest: test.constructor.topic
 ---
 spring:
   config:
