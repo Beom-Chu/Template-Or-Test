@@ -3,6 +3,9 @@ package com.kbs.templateortest.etc;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.slf4j.MDC;
+
+import java.time.LocalDateTime;
 
 @Slf4j
 public class Slf4jTest {
@@ -30,5 +33,13 @@ public class Slf4jTest {
         int result = 123;
 
         log.info("CrmUmsPushListener[svcId:{}] Result : {}", svcId , result);
+    }
+
+    @Test
+    public void testMDC() {
+
+        System.out.println("[[[MDC.get(\"TRANSACTION_ID\") = " + MDC.get("TRANSACTION_ID"));
+        MDC.put("TRANSACTION_ID", LocalDateTime.now().toString());
+        System.out.println("[[[MDC.get(\"TRANSACTION_ID\") 2 = " + MDC.get("TRANSACTION_ID"));
     }
 }
