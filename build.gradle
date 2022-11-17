@@ -66,6 +66,10 @@ dependencies {
     //querydsl 추가
     implementation "com.querydsl:querydsl-jpa:5.0.0"
     implementation "com.querydsl:querydsl-apt:5.0.0"
+
+    //joda-time
+    implementation group: 'joda-time', name: 'joda-time', version: '2.3'
+
 }
 
 tasks.named('test') {
