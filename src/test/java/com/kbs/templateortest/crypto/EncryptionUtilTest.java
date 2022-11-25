@@ -4,6 +4,11 @@ import org.junit.jupiter.api.Test;
 
 import javax.crypto.BadPaddingException;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.StandardCharsets;
+import java.util.UUID;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class EncryptionUtilTest {
@@ -41,5 +46,17 @@ class EncryptionUtilTest {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Test
+    void uRLDecoderTest() {
+        String input = "%EC%84%B1%EA%B3%B5";
+        String decode = URLDecoder.decode(input, StandardCharsets.UTF_8);
+        System.out.println("[[[decode = " + decode);
+    }
+
+    @Test
+    public void test(){
+        System.out.println(UUID.randomUUID());
     }
 }
