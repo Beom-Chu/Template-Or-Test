@@ -9,9 +9,12 @@ import org.springframework.stereotype.Component;
 public class KafkaReceiver {
 
 //    @KafkaListener(id = "testStringConsumer", topics = "${kafka.topic.str}")
-    public void receiverString(String str) {
+    public void receiverString(String str) throws Exception {
         System.out.println("[[[start KafkaReceiver.receiverString!!");
         System.out.println("[[[str = " + str);
+
+        /* 에러 발생 재실행 테스트 : default 10회 재실행 */
+        throw new Exception("오류 발생!!!");
     }
 
 //    @KafkaListener(id = "testUserConsumer", topics = "${kafka.topic.usr}")
