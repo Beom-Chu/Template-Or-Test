@@ -87,4 +87,20 @@ public class StringTest {
 //        System.out.println("[[[inDto.body.toString() = " + inDto.body.toString());
         System.out.println("[[[String.valueOf(inDto.body) = " + String.valueOf(inDto.body));
     }
+
+    @Test
+    public void EqualsTest() {
+        String s1 = "abc";
+        String s2 = null;
+
+        if(s1.equals(s2)) {
+            System.out.println("[[[s1.equals(s2 = " + s1.equals(s2));
+        }
+
+        // String equals에서는 주체가 되는 String이 null일 경우에 에러 발생.
+        // 비교 대상 String은 null이어도 에러 발생 안함.
+        if(s2.equals(s1)) {
+            System.out.println("[[[s2.equals(s1) = " + s2.equals(s1));
+        }
+    }
 }
