@@ -8,4 +8,6 @@ import java.util.Optional;
 
 public interface TestRepository extends JpaRepository<TestEntity, Long> {
     Optional<List<TestEntity>> findAllByName(String name);
+
+    TestEntity findTop1ByName(String name);
 }
