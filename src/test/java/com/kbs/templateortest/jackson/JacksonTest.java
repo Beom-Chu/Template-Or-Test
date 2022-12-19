@@ -14,7 +14,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -116,5 +119,41 @@ class JacksonTest {
         List<Object> members = mapper.readValue(jsonString, new TypeReference<>() {});
 
         System.out.println("[[[members = " + members);
+    }
+
+    @Test
+    public void testLocalDateTime() throws JsonProcessingException {
+
+        ZonedDateTime parse1 = ZonedDateTime.parse("2022-12-15T00:00:00+09:00");
+        ZonedDateTime parse2 = ZonedDateTime.parse("2022-12-15T23:59:59+09:00");
+
+        System.out.println("[[[parse1 = " + parse1);
+        System.out.println("[[[parse2 = " + parse2);
+
+        String s1 = mapper.writeValueAsString(parse1);
+        String s2 = mapper.writeValueAsString(parse2);
+
+        System.out.println("[[[s1 = " + s1);
+        System.out.println("[[[s2 = " + s2);
+
+        ZonedDateTime zonedDateTime1 = mapper.readValue(s1, ZonedDateTime.class);
+        ZonedDateTime zonedDateTime2 = mapper.readValue(s2, ZonedDateTime.class);
+
+        System.out.println("[[[zonedDateTime1 = " + zonedDateTime1);
+        System.out.println("[[[zonedDateTime2 = " + zonedDateTime2);
+
+        LocalDate localDate1 = zonedDateTime1.withZoneSameInstant(ZoneId.of("Asia/Seoul")).toLocalDate();
+        LocalDate localDate2 = zonedDateTime2.withZoneSameInstant(ZoneId.of("Asia/Seoul")).toLocalDate();
+
+        System.out.println("[[[localDate1 = " + localDate1);
+        System.out.println("[[[localDate2 = " + localDate2);
+
+
+        ZonedDateTime parse = ZonedDateTime.parse("2022-12-16T15:00:00Z");
+        System.out.println("[[[parse = " + parse);
+
+        LocalDate localDate = parse.withZoneSameInstant(ZoneId.of("Asia/Seoul")).toLocalDate();
+        System.out.println("[[[localDate = " + localDate);
+
     }
 }
