@@ -15,6 +15,10 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
+        jdbc:
+          time_zone: UTC
+
+
 
   rabbitmq:
     host: localhost
@@ -45,6 +49,11 @@ spring:
       value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
       auto-offset-reset: earliest
 
+logging:
+  level:
+    org:
+      hibernate:
+        type: trace
 application:
   test: kbs-def
 
