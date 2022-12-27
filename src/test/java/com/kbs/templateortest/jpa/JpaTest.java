@@ -2,6 +2,7 @@ package com.kbs.templateortest.jpa;
 
 import com.kbs.templateortest.jpa.entity.TestEntity;
 import com.kbs.templateortest.jpa.repository.TestRepository;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -10,6 +11,7 @@ import org.springframework.test.annotation.Rollback;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @SpringBootTest
 public class JpaTest {
@@ -36,16 +38,33 @@ public class JpaTest {
         System.out.println("[[[save = " + save);
 
 
-        TestEntity byDateTimeGreaterThanEqual = testRepository.findByDateTimeGreaterThanEqual(now);
+        List<TestEntity> byDateTimeGreaterThanEqual = testRepository.findByDateTimeGreaterThanEqual(now);
 
         System.out.println("[[[byDateTimeGreaterThanEqual = " + byDateTimeGreaterThanEqual);
     }
 
     @Test
     @Transactional
-    public void test2() {
+    @DisplayName("null 객체 delete 테스트")
+    public void testDelete() {
 
-        LocalDateTime now = LocalDateTime.now();
+        TestEntity n1 = testRepository.findTop1ByName("n1");
 
+        System.out.println("[[[n1 = " + n1);
+
+        testRepository.delete(n1);
     }
+
+    @Test
+    @Transactional
+    @DisplayName("빈 배열 객체 delete all 테스트")
+    public void testDeleteAll() {
+
+        List<TestEntity> testEntities = testRepository.findByDateTimeGreaterThanEqual(LocalDateTime.now());
+
+        System.out.println("[[[testEntities = " + testEntities);
+
+        testRepository.deleteAll(testEntities);
+    }
+
 }

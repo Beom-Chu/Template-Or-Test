@@ -12,5 +12,5 @@ public interface TestRepository extends JpaRepository<TestEntity, Long> {
 
     TestEntity findTop1ByName(String name);
 
-    TestEntity findByDateTimeGreaterThanEqual(LocalDateTime dateTime);
+    List<TestEntity> findByDateTimeGreaterThanEqual(LocalDateTime dateTime);
 }
