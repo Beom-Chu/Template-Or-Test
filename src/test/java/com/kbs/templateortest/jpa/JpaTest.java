@@ -26,7 +26,7 @@ public class JpaTest {
 
         TestEntity te = new TestEntity();
         te.setName("n1");
-        te.setDate(LocalDate.now());
+        te.setDate(LocalDate.now().toString());
         te.setDateTime(now);
 
         System.out.println("[[[te = " + te);
