@@ -71,6 +71,8 @@ dependencies {
 //    경고문구 재현을 위한 추가 : Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
     implementation group: 'joda-time', name: 'joda-time', version: '2.3'
 
+    // valid 사용
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
 }
 
 tasks.named('test') {
