@@ -1,8 +1,6 @@
 spring:
-  config:
-    activate:
-      on-profile: default
-
+  profiles:
+    default: default
   datasource:
     url: jdbc:h2:tcp://localhost/~/querydsl
     username: sa
@@ -17,8 +15,6 @@ spring:
         format_sql: true
         jdbc:
           time_zone: UTC
-
-
 
   rabbitmq:
     host: localhost
