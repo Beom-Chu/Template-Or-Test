@@ -16,7 +16,7 @@ import org.springframework.test.context.ActiveProfiles;
 // 프로그램 환경 변수
 //--spring.profiles.active=local
 
-@SpringBootTest
+@SpringBootTest(classes = {Environment.class, ApplicationContext.class})
 //@ActiveProfiles("local") /* 테스트시 profile 선택 */
 public class PropertyTest {
 

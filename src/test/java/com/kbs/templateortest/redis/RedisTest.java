@@ -2,11 +2,11 @@ package com.kbs.templateortest.redis;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.data.redis.DataRedisTest;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 
-@SpringBootTest
+@DataRedisTest
 class RedisTest {
 
     @Autowired
@@ -17,9 +17,9 @@ class RedisTest {
 
         ValueOperations<String, String> vop = redisTemplate.opsForValue();
 
-        vop.set("key001", "first");
-        vop.set("key002", "second");
-        vop.set("key003", "third");
+        vop.set("key001", "first1");
+        vop.set("key002", "second2");
+        vop.set("key003", "third3");
 
     }
 

@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
-@SpringBootTest
+@SpringBootTest(classes = {ProfileConfig.class, ProfileTestConfig.class, ProfileLocalConfig.class})
 /* ActiveProfiles에 설정한 profile에 맞춰서 빈이 등록 */
 //@ActiveProfiles("test")
 @ActiveProfiles("local")
