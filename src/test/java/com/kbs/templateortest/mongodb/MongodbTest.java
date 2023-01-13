@@ -1,6 +1,8 @@
 package com.kbs.templateortest.mongodb;
 
 import com.kbs.templateortest.mongodb.document.Account;
+import com.kbs.templateortest.mongodb.document.AccountRole;
+import com.kbs.templateortest.mongodb.document.Header;
 import com.kbs.templateortest.mongodb.repository.AccountRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -11,6 +13,8 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
 
 @DataMongoTest
 public class MongodbTest {
@@ -108,5 +112,30 @@ public class MongodbTest {
     @Test
     public void deleteAll() {
         accountRepository.deleteAll();
+    }
+
+    @Test
+    public void test2() {
+        Header header = Header.builder()
+                .sessionId("sid-" + UUID.randomUUID())
+                .token("token1234")
+                .build();
+        Account account = Account.builder()
+                .username("Kim Test2")
+                .email("test2@test.com")
+                .phoneNumber("010-1234-5678")
+                .regTime(LocalDateTime.now().withNano(0))
+                .header(header)
+                .accountRole(AccountRole.ADMIN)
+                .build();
+
+        System.out.println("[[[account = " + account);
+
+        Account saveAccount = accountRepository.save(account);
+
+        Account findAccount = accountRepository.findById(saveAccount.getId()).get();
+
+        System.out.println("[[[findAccount = " + findAccount);
+
     }
 }

@@ -17,4 +17,6 @@ public class Account {
     private String email;
     private String phoneNumber;
     private LocalDateTime regTime;
+    private AccountRole accountRole;
+    private Header header;
 }
