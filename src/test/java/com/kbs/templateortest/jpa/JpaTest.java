@@ -6,9 +6,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.annotation.Rollback;
 
-import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -20,8 +18,6 @@ public class JpaTest {
     private TestRepository testRepository;
 
     @Test
-    @Transactional
-    @Rollback(value = false)
     public void test() {
 
         LocalDateTime now = LocalDateTime.now().withNano(0);
@@ -44,7 +40,6 @@ public class JpaTest {
     }
 
     @Test
-    @Transactional
     @DisplayName("null 객체 delete 테스트")
     public void testDelete() {
 
@@ -56,7 +51,6 @@ public class JpaTest {
     }
 
     @Test
-    @Transactional
     @DisplayName("빈 배열 객체 delete all 테스트")
     public void testDeleteAll() {
 
@@ -65,6 +59,14 @@ public class JpaTest {
         System.out.println("[[[testEntities = " + testEntities);
 
         testRepository.deleteAll(testEntities);
+    }
+
+    @Test
+    @DisplayName("전체 조회 테스트")
+    public void testFindAll() {
+        List<TestEntity> all = testRepository.findAll();
+
+        System.out.println("[[[all = " + all);
     }
 
 }
