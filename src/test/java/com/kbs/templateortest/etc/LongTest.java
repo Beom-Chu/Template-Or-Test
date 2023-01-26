@@ -67,6 +67,6 @@ public class LongTest {
         System.out.println(i2 == i1);
 
         System.out.println(i2 == i3);
-//        System.out.println(i2 == i1);
+        System.out.println(i2 == i1);
     }
 }
