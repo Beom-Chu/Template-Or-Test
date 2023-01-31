@@ -1,4 +1,4 @@
-package com.kbs.templateortest.etc;
+package com.kbs.templateortest.time;
 
 import org.junit.jupiter.api.Test;
 
@@ -7,7 +7,6 @@ import java.time.LocalTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.TimeZone;

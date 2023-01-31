@@ -1,4 +1,4 @@
-package com.kbs.templateortest.etc;
+package com.kbs.templateortest.time;
 
 import org.junit.jupiter.api.Test;
 
