@@ -5,8 +5,6 @@ public abstract class Dialog {
 
     public void render() {
         Button button = createButton();
-
-        button.onClick();
         button.render();
     }
 }
