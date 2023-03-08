@@ -4,9 +4,9 @@ public final class Singleton {
     private static Singleton instance;
     public String value;
 
-    public Singleton(String value) {
+    private Singleton(String value) {
         try {
-            Thread.sleep(1000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

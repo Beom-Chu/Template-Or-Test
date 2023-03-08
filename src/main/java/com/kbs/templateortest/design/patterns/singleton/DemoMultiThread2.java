@@ -3,7 +3,7 @@ package com.kbs.templateortest.design.patterns.singleton;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-public class DemoMultiThread {
+public class DemoMultiThread2 {
 
     public static void main(String[] args) {
 
@@ -26,7 +26,7 @@ public class DemoMultiThread {
 
         @Override
         public void run() {
-            Singleton instance = Singleton.getInstance(String.valueOf(value));
+            MultiCheckSingleton instance = MultiCheckSingleton.getInstance(String.valueOf(value));
             System.out.println("[[[instance.value = " + instance.value);
         }
     }
