@@ -2,6 +2,9 @@ package com.kbs.templateortest.time;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
 /*
 
 WARN 11932 --- [  restartedMain] o.s.data.convert.CustomConversions       : Registering converter from class java.time.LocalDateTime to class org.joda.time.LocalDateTime as reading converter although it doesn't convert from a store-supported type; You might want to check your annotation setup at the converter implementation
@@ -33,5 +36,28 @@ public class LocalDateTimeTest {
 
         System.out.println("[[[source = " + source);
         System.out.println("[[[result = " + result);
+    }
+
+    @Test
+    public void testDateTimeFormatter() {
+        ZonedDateTime now = ZonedDateTime.now();
+
+        System.out.println("[[[now.format(DateTimeFormatter.ISO_LOCAL_DATE) = " + now.format(DateTimeFormatter.ISO_LOCAL_DATE));
+        System.out.println("[[[now.format(DateTimeFormatter.ISO_OFFSET_DATE) = " + now.format(DateTimeFormatter.ISO_OFFSET_DATE));
+        System.out.println("[[[now.format(DateTimeFormatter.ISO_DATE) = " + now.format(DateTimeFormatter.ISO_DATE));
+        System.out.println("[[[now.format(DateTimeFormatter.ISO_LOCAL_TIME) = " + now.format(DateTimeFormatter.ISO_LOCAL_TIME));
+        System.out.println("[[[now.format(DateTimeFormatter.ISO_OFFSET_TIME) = " + now.format(DateTimeFormatter.ISO_OFFSET_TIME));
+        System.out.println("[[[now.format(DateTimeFormatter.ISO_TIME) = " + now.format(DateTimeFormatter.ISO_TIME));
+        System.out.println("[[[now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) = " + now.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME));
+        System.out.println("[[[now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME) = " + now.format(DateTimeFormatter.ISO_OFFSET_DATE_TIME));
+        System.out.println("[[[now.format(DateTimeFormatter.ISO_ZONED_DATE_TIME) = " + now.format(DateTimeFormatter.ISO_ZONED_DATE_TIME));
+        System.out.println("[[[now.format(DateTimeFormatter.ISO_DATE_TIME) = " + now.format(DateTimeFormatter.ISO_DATE_TIME));
+        System.out.println("[[[now.format(DateTimeFormatter.ISO_ORDINAL_DATE) = " + now.format(DateTimeFormatter.ISO_ORDINAL_DATE));
+        System.out.println("[[[now.format(DateTimeFormatter.ISO_WEEK_DATE) = " + now.format(DateTimeFormatter.ISO_WEEK_DATE));
+        System.out.println("[[[now.format(DateTimeFormatter.ISO_INSTANT) = " + now.format(DateTimeFormatter.ISO_INSTANT));
+        System.out.println("[[[now.format(DateTimeFormatter.BASIC_ISO_DATE) = " + now.format(DateTimeFormatter.BASIC_ISO_DATE));
+        System.out.println("[[[now.format(DateTimeFormatter.RFC_1123_DATE_TIME) = " + now.format(DateTimeFormatter.RFC_1123_DATE_TIME));
+
+
     }
 }
