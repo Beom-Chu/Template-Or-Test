@@ -50,4 +50,15 @@ public class ListTest {
         System.out.println("[[[ time : " + (System.currentTimeMillis() - st));
 
     }
+
+    @Test
+    public void ofTest() {
+        List<String> list = null;
+
+        System.out.println("[[[list = " + (list == null));
+
+        list = List.of();
+
+        System.out.println("[[[list = " + list);
+    }
 }
