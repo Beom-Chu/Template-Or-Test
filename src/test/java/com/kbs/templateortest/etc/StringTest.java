@@ -103,4 +103,16 @@ public class StringTest {
             System.out.println("[[[s2.equals(s1) = " + s2.equals(s1));
         }
     }
+
+    @Test
+    public void compareTest() {
+        String target = "20230407";
+        String from = "20230409";
+
+        int i = target.compareTo(from);
+
+        System.out.println("[[[target.compareTo(from) = " + i);
+        System.out.println("[[[String.valueOf(i >= 0) = " + (i >= 0));
+
+    }
 }
