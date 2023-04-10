@@ -30,4 +30,13 @@ public class LocalDateTest {
         System.out.println("[[[date = " + date);
         System.out.println("[[[reLocalDate = " + reLocalDate);
     }
+
+    @Test
+    public void test2() {
+        LocalDate date = LocalDate.of(0, 1, 1);
+        System.out.println("[[[date = " + date);
+
+        LocalDate parse = LocalDate.parse("00000000");
+        System.out.println("[[[parse = " + parse);
+    }
 }
