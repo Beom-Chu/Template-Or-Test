@@ -115,4 +115,14 @@ public class StringTest {
         System.out.println("[[[String.valueOf(i >= 0) = " + (i >= 0));
 
     }
+
+    @Test
+    public void compareNullTest() {
+        String target = "20230407";
+        String from = null;
+
+        int i = target.compareTo(from);
+
+        System.out.println("[[[target.compareTo(from) = " + i);
+    }
 }
