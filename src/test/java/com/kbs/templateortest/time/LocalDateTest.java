@@ -36,7 +36,37 @@ public class LocalDateTest {
         LocalDate date = LocalDate.of(0, 1, 1);
         System.out.println("[[[date = " + date);
 
-        LocalDate parse = LocalDate.parse("00000000");
+        LocalDate parse = LocalDate.parse("20230101",DateTimeFormatter.ofPattern("yyyyMMdd"));
         System.out.println("[[[parse = " + parse);
+    }
+
+    @Test
+    public void testStringToDateToString() {
+
+        String[] executeDates = {"20230510", "2023-05-10", "2023","", null};
+
+        for (String executeDate : executeDates) {
+
+            try {
+                String replaceExecuteDate = executeDate.replaceAll("[^0-9]+", "");
+
+                LocalDate localDate = LocalDate.parse(replaceExecuteDate, DateTimeFormatter.BASIC_ISO_DATE);
+
+                String isoLocalDate = localDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
+                String basicIsoDate = localDate.format(DateTimeFormatter.BASIC_ISO_DATE);
+
+                System.out.println("[[[[[executeDate = " + executeDate);
+                System.out.println("[[[isoLocalDate = " + isoLocalDate);
+                System.out.println("[[[basicIsoDate = " + basicIsoDate);
+
+            } catch (Exception e) {
+                System.out.println("[[[executeDate = " + executeDate);
+                System.out.println(e);
+            } finally {
+                System.out.println();
+            }
+
+        }
+
     }
 }
