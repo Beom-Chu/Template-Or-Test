@@ -7,7 +7,7 @@ import java.io.IOException;
 
 
 /* InterceptorController로 테스트 */
-@Component
+//@Component
 public class MyFilter implements Filter {
 
     /**

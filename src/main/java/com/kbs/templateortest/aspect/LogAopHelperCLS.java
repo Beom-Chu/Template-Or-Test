@@ -10,7 +10,7 @@ import java.util.Arrays;
 
 
 @Aspect
-@Component
+//@Component
 @Slf4j
 public class LogAopHelperCLS {
 
