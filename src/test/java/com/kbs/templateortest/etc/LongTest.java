@@ -1,5 +1,6 @@
 package com.kbs.templateortest.etc;
 
+import org.apache.logging.log4j.util.Strings;
 import org.junit.jupiter.api.Test;
 
 import java.util.Objects;
@@ -68,5 +69,18 @@ public class LongTest {
 
         System.out.println(i2 == i3);
 //        System.out.println(i2 == i1);
+    }
+
+    @Test
+    public void testParseLong() {
+
+        Long partyId = null;
+        String temp = "undefined";
+        if (Strings.isNotBlank(temp)) {
+            partyId = Long.parseLong(temp);
+        }
+
+        System.out.println("[[[partyId = " + partyId);
+        // java.lang.NumberFormatException: For input string: "undefined"
     }
 }
