@@ -201,4 +201,16 @@ public class StreamTest {
         System.out.println("[[[names3 = " + names3);
     }
 
+    @Test
+    @DisplayName("list에서 list를 필터링")
+    public void testFilterListFromList() {
+        List<Integer> targets = List.of(111, 222, 333, 444, 555, 666);
+        List<Integer> deletedIds = List.of(222, 666);
+
+        List<Integer> filterIds = targets.stream()
+                .filter(o -> !deletedIds.contains(o))
+                .collect(Collectors.toList());
+
+        System.out.println("[[[filterIds = " + filterIds);
+    }
 }
