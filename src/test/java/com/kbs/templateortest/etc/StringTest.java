@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.internal.matchers.Null;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.StringUtils;
 
 public class StringTest {
 
@@ -124,5 +125,15 @@ public class StringTest {
         int i = target.compareTo(from);
 
         System.out.println("[[[target.compareTo(from) = " + i);
+    }
+
+    @Test
+    public void testHasText () {
+        String phone = "";
+        if(!StringUtils.hasText(phone)) {
+            System.out.println(true);
+        } else {
+            System.out.println(false);
+        }
     }
 }
