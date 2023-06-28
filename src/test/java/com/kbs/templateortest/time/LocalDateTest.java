@@ -1,8 +1,10 @@
 package com.kbs.templateortest.time;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.sql.Date;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -68,5 +70,38 @@ public class LocalDateTest {
 
         }
 
+    }
+
+    @Test
+    @DisplayName("주말을 다음 월요일로 변경 메서드 테스트")
+    public void testChangeWeekendToMonday() {
+        LocalDate date0622 = LocalDate.of(2023, 6, 22); /*목*/
+        LocalDate date0623 = LocalDate.of(2023, 6, 23); /*금*/
+        LocalDate date0624 = LocalDate.of(2023, 6, 24); /*토*/
+        LocalDate date0625 = LocalDate.of(2023, 6, 25); /*일*/
+        LocalDate date0626 = LocalDate.of(2023, 6, 26); /*월*/
+        LocalDate date0627 = LocalDate.of(2023, 6, 27); /*화*/
+
+        LocalDate date0430 = LocalDate.of(2023, 4, 30); /*일:다음달로 넘어감*/
+
+        System.out.println("[[[date0622 = " + changeWeekendToMonday(date0622));
+        System.out.println("[[[date0623 = " + changeWeekendToMonday(date0623));
+        System.out.println("[[[date0624 = " + changeWeekendToMonday(date0624));
+        System.out.println("[[[date0625 = " + changeWeekendToMonday(date0625));
+        System.out.println("[[[date0626 = " + changeWeekendToMonday(date0626));
+        System.out.println("[[[date0627 = " + changeWeekendToMonday(date0627));
+
+        System.out.println("[[[date0430 = " + changeWeekendToMonday(date0430));
+
+    }
+    public Date changeWeekendToMonday(LocalDate executeDate) {
+
+        DayOfWeek dayOfWeek = executeDate.getDayOfWeek();
+        if(dayOfWeek.equals(DayOfWeek.SATURDAY)) {
+            executeDate = executeDate.plusDays(2);
+        } else if(dayOfWeek.equals(DayOfWeek.SUNDAY)) {
+            executeDate = executeDate.plusDays(1);
+        }
+        return Date.valueOf(executeDate);
     }
 }
