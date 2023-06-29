@@ -136,4 +136,30 @@ public class StringTest {
             System.out.println(false);
         }
     }
+
+    @Test
+    public void testSubstring() {
+
+        String date = "20230626";
+        String year = date.substring(0, 4);
+        String month = date.substring(4, 6);
+        String day = date.substring(6,8);
+        System.out.println("[[[year = " + year);
+        System.out.println("[[[month = " + month);
+        System.out.println("[[[day = " + day);
+    }
+
+    @Test
+    public void testContain() {
+
+
+        String userAgent = "TestPostmanRuntime/7.32.3";
+        String lowerUserAgent = userAgent.toLowerCase();
+
+        if(!lowerUserAgent.contains("postman")) {
+            System.out.println("Not Postman!");
+        } else {
+            System.out.println("PostMan!");
+        }
+    }
 }
