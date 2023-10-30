@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -34,8 +35,12 @@ class JacksonTest {
     @DisplayName("Java Object => Json String")
     public void testObjectToJsonString() throws JsonProcessingException {
 
+        Address address = Address.builder().alias("home").addressName("sung-nam").streetNumber(12345L).build();
+
         Member member = Member.builder().id(1).name("kbs").email("kbs@test.com").gender(Gender.MAN)
-                .age(10).phoneNumber("010-1234-5678").regDate(LocalDateTime.now()).build();
+                .age(10).phoneNumber("010-1234-5678").regDate(LocalDateTime.now())
+                .addresses(Collections.singletonList(address))
+                .build();
 
         String jsonString = mapper.writeValueAsString(member);
 
@@ -89,7 +94,7 @@ class JacksonTest {
         String jsonString = "[{\"id\":1,\"name\":\"kbs\",\"age\":10,\"email\":\"kbs@test.com\",\"gender\":\"MAN\",\"regDate\":[2022,5,11,16,3,35],\"phone-no\":\"010-1234-5678\"}," +
                 "{\"id\":2,\"name\":\"ljs\",\"age\":12,\"email\":\"ljs@test.com\",\"gender\":\"WOMAN\",\"regDate\":[2022,5,12,12,4,30],\"phone-no\":\"010-0000-0000\"}]";
 
-        List<Member> members = mapper.readValue(jsonString, new TypeReference<List<Member>>(){});
+        List<Member> members = mapper.readValue(jsonString, new TypeReference<>() {});
 
         System.out.println("[[[members = " + members);
     }
@@ -99,7 +104,7 @@ class JacksonTest {
     public void testJsonStringToMap() throws JsonProcessingException {
         String jsonString = "{\"id\":1,\"name\":\"kbs\",\"age\":10,\"email\":\"kbs@test.com\",\"gender\":\"MAN\",\"regDate\":[2022,5,11,16,3,35],\"phone-no\":\"010-1234-5678\"}";
 
-        Map<String, Object> stringObjectMap = mapper.readValue(jsonString, new TypeReference<Map<String, Object>>() {});
+        Map<String, Object> stringObjectMap = mapper.readValue(jsonString, new TypeReference<>() {});
 
         System.out.println("[[[stringObjectMap = " + stringObjectMap);
     }

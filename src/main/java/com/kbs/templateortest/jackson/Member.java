@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Data
 @Builder
@@ -31,4 +32,6 @@ public class Member {
 
 //    @JsonFormat(pattern = "dd-MM-yyyy hh:mm:ss") /* 날짜, 시간 직렬화시 포멧 설정 */
     private LocalDateTime regDate;
+
+    private List<Address> addresses;
 }
