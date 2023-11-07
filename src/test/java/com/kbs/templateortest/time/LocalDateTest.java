@@ -7,6 +7,7 @@ import java.sql.Date;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAdjusters;
 
 public class LocalDateTest {
 
@@ -103,5 +104,17 @@ public class LocalDateTest {
             executeDate = executeDate.plusDays(1);
         }
         return Date.valueOf(executeDate);
+    }
+
+
+    @Test
+    public void testTemporalAdjusters() {
+        LocalDate executeDate = LocalDate.now();
+
+        LocalDate effectiveDateFrom = executeDate.minusMonths(1).with(TemporalAdjusters.firstDayOfMonth()); // 해당 월의 첫날
+        LocalDate effectiveDateTo = executeDate.minusMonths(1).with(TemporalAdjusters.lastDayOfMonth()); // 해당 월의 마지막 날
+
+        System.out.println("[[[effectiveDateFrom = " + effectiveDateFrom);
+        System.out.println("[[[effectiveDateTo = " + effectiveDateTo);
     }
 }
