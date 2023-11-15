@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class ListTest {
 
@@ -33,6 +34,12 @@ public class ListTest {
         List<String> list = new ArrayList<>(set);
 
         System.out.println("[[[list = " + list);
+
+        List<String> notAaa = set.stream()
+                .filter(o -> !o.equals("aaa"))
+                .collect(Collectors.toList());
+
+        System.out.println("[[[notAaa = " + notAaa);
     }
 
     @Test
