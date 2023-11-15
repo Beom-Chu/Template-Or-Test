@@ -94,8 +94,10 @@ public class CalendarTest {
     @Test
     public void test4() {
         Calendar calendar = Calendar.getInstance();
-        calendar.add(calendar.DATE,8);
+        calendar.add(calendar.DATE,7);
+//2023-11-13T00:00+09:00[Asia/Seoul
 
+        calendar.set(Calendar.DAY_OF_WEEK,Calendar.MONDAY);
         ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(calendar.toInstant(), TimeZone.getDefault().toZoneId()).with(LocalTime.MIN);
 
         System.out.println("[[[zonedDateTime = " + zonedDateTime);
