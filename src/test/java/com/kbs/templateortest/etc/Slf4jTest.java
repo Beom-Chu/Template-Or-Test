@@ -1,7 +1,6 @@
 package com.kbs.templateortest.etc;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.MDC;
 
@@ -41,5 +40,18 @@ public class Slf4jTest {
         System.out.println("[[[MDC.get(\"TRANSACTION_ID\") = " + MDC.get("TRANSACTION_ID"));
         MDC.put("TRANSACTION_ID", LocalDateTime.now().toString());
         System.out.println("[[[MDC.get(\"TRANSACTION_ID\") 2 = " + MDC.get("TRANSACTION_ID"));
+    }
+
+    @Test
+    public void testErrorLog() throws InterruptedException {
+
+        try {
+            throw new Exception("오류발생!");
+        }catch (Exception e) {
+            e.printStackTrace();
+            Thread.sleep(1000L);
+            System.out.println("=================================================");
+            log.error(e.getMessage(), e);
+        }
     }
 }
