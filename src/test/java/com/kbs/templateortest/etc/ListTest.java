@@ -68,4 +68,12 @@ public class ListTest {
 
         System.out.println("[[[list = " + list);
     }
+    @Test
+    public void testInputListNull() {
+        List<String> list = new ArrayList<>();
+
+        list.add(null);
+
+        System.out.println("[[[list = " + list);
+    }
 }
