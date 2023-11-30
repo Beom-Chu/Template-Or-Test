@@ -8,7 +8,7 @@ spring:
     driver-class-name: org.h2.Driver
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         show_sql: true
@@ -65,6 +65,7 @@ config:
     contact:
       mail: abcd@test.com
       tel: 123-4567-8910
+    list: M12345, M6789
 
 kafka:
   topic:
