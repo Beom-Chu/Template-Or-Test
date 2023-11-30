@@ -7,7 +7,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.env.Environment;
-import org.springframework.test.context.ActiveProfiles;
+
+import java.util.List;
 
 /* 다양한 방법으로 프로퍼티 가져오기 가능
 * Environment, ApplicationContext, @Value
@@ -39,6 +40,11 @@ public class PropertyTest {
     String umsApiKey;
     @Value("${ums.api.secret:ums.api.secret is undefined.}")
     String umsApiSecret;
+    @Value("${config.properties.list:}")
+    List<String> list;
+
+    @Value("${config.properties.list2:}")
+    List<String> list2;
 
     @Test
     public void testEnvironment() {
@@ -91,5 +97,22 @@ public class PropertyTest {
     @Test
     public void testActiveProfiles() {
 
+    }
+
+    
+    @Test
+    @DisplayName("Property List 사용 테스트")
+    public void testListProperties() {
+        System.out.println("[[[list.size() = " + list.size());
+        for(String s1 : list) {
+            System.out.println("[[[s1 = " + s1);
+        }
+
+        // config.properties.list2 는 테스트 실행시 환경 변수로 설정 후 테스트
+        // config.properties.list2=abc,def
+        System.out.println("[[[list2.size() = " + list2.size());
+        for(String s2 : list2) {
+            System.out.println("[[[s2 = " + s2);
+        }
     }
 }
