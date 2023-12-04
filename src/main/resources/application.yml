@@ -81,3 +81,10 @@ spring:
 application:
   test: kbs-loc
 
+config:
+  properties:
+    list: A12345, A6789
+    env1: ${ENV1}
+    env2: ${ENV2}
+    env3: ${ENV3}
+    env4: ${ENV4}
