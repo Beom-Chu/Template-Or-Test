@@ -3,11 +3,10 @@ package com.kbs.templateortest.etc;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.mockito.internal.matchers.Null;
-import org.springframework.http.HttpStatus;
 import org.springframework.util.StringUtils;
+
+import java.time.LocalDateTime;
 
 public class StringTest {
 
@@ -161,5 +160,47 @@ public class StringTest {
         } else {
             System.out.println("PostMan!");
         }
+    }
+
+    @Test
+    public void testStringFormat() {
+
+        System.out.println("숫자 : %d");
+        int i = 1;
+        printString("%03d", String.format("%03d", i));
+        printString("%3d", String.format("%3d", i));
+        printString("%3d___", String.format("%3d___", i));
+
+        int i2 = 12345678;
+        printString("%03d", String.format("%03d", i2));
+        printString("%,d", String.format("%,d", i2));
+
+
+        System.out.println("\n문자 : %s");
+        String s = "Hello!?";
+        printString("%s", String.format("%s", s));
+        printString("%10s", String.format("%10s", s));
+        printString("%-10s", String.format("%-10s", s));
+        printString("%.3s", String.format("%.3s", s));
+
+
+        System.out.println("\n실수 : %f");
+        double f = 1234.5678;
+        printString("%f", String.format("%f", f));
+        printString("%.3f", String.format("%.3f", f));
+        printString("%10.3f", String.format("%10.3f", f));
+        printString("%010.3f", String.format("%010.3f", f));
+        printString("%-10.3f", String.format("%-10.3f", f));
+
+
+        System.out.println("\n일시 : %t");
+        LocalDateTime now = LocalDateTime.now();
+        printString("%tF", String.format("%tF", now));
+        printString("%tR", String.format("%tR", now));
+        printString("%tY%tm", String.format("%tY%tm", now, now));
+    }
+
+    public void printString(String name, String s) {
+        System.out.println(String.format("%-8s",name) + " [" + s + "]" );
     }
 }
