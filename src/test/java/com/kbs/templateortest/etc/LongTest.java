@@ -1,6 +1,7 @@
 package com.kbs.templateortest.etc;
 
 import org.apache.logging.log4j.util.Strings;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.util.Objects;
@@ -82,5 +83,46 @@ public class LongTest {
 
         System.out.println("[[[partyId = " + partyId);
         // java.lang.NumberFormatException: For input string: "undefined"
+    }
+
+    @Test
+    @DisplayName("null이 포함된 Long 데이터 비교")
+    public void testNullEquals() {
+
+        Long null1 = null;
+        Long null2 = null;
+        Long long1 = 10L;
+
+        // Objects.equals 은 null과 null도 비교 가능
+        System.out.print("Objects.equals => not null vs null : ");
+        printNullEqualsResult(Objects.equals(long1, null1));
+
+        System.out.print("Objects.equals => null vs not null : ");
+        printNullEqualsResult(Objects.equals(null1, long1));
+
+        System.out.print("Objects.equals => null vs null : ");
+        printNullEqualsResult(Objects.equals(null1, null2));
+
+
+        // Long.equals은 비교 주체가 null이면 에러 발생
+        System.out.print("Long.equals => not null vs null : ");
+        printNullEqualsResult(long1.equals(null1));
+
+        System.out.print("Long.equals => null vs not null : ");
+        printNullEqualsResult(null1.equals(long1));
+
+        System.out.print("Long.equals => null vs null : ");
+        printNullEqualsResult(null1.equals(null2));
+
+    }
+
+    public void printNullEqualsResult(Boolean b) {
+        try {
+            System.out.print(b);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            System.out.println();
+        }
     }
 }
