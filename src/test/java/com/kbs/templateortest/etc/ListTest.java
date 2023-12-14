@@ -1,5 +1,6 @@
 package com.kbs.templateortest.etc;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -75,5 +76,36 @@ public class ListTest {
         list.add(null);
 
         System.out.println("[[[list = " + list);
+    }
+
+    @Test
+    @DisplayName("다른 타입의 객체를 List.contains로 비교")
+    public void testNotSameTypeContains() {
+        List<String> strings = Arrays.asList("a", "b", "c", null);
+        Long l = 10L;
+        Long l2 = null;
+
+        /* 다른 타입으로 비교시 에러 없이 false 반환 */
+        System.out.println("[[[strings.contains(l) = " + strings.contains(l));
+
+        /* 다른 타입이라도 null은 비교되어 true 반환 */
+        System.out.println("[[[strings.contains(l2) = " + strings.contains(l2));
+
+
+        /* AbstractCollection.contains에 null 비교 로직 존재
+        public boolean contains(Object o) {
+            Iterator<E> it = iterator();
+            if (o==null) {
+                while (it.hasNext())
+                    if (it.next()==null)
+                        return true;
+            } else {
+                while (it.hasNext())
+                    if (o.equals(it.next()))
+                        return true;
+            }
+            return false;
+        }
+        */
     }
 }
