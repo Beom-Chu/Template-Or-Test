@@ -203,4 +203,14 @@ public class StringTest {
     public void printString(String name, String s) {
         System.out.println(String.format("%-8s",name) + " [" + s + "]" );
     }
+
+    @Test
+    public void testIndexOf() {
+        String s = "12345";
+        System.out.println("[[[s.indexOf(\"1\") = " + s.indexOf("1"));
+        System.out.println("[[[s.indexOf(\"2\") = " + s.indexOf("2"));
+        System.out.println("[[[s.contains(\"1\") = " + s.contains("1"));
+        System.out.println("[[[s.indexOf(\"12\") = " + s.indexOf("12"));
+        System.out.println("[[[s.indexOf(\"45\") = " + s.indexOf("45"));
+    }
 }
