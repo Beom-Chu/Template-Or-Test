@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.Date;
+import java.util.*;
 
 public class GsonTest {
 
@@ -52,6 +52,43 @@ public class GsonTest {
         System.out.println("[[[objLocalDate2 = " + objLocalDate2);
     }
 
+    @Test
+    public void testInnerClassSerialize() {
+        GsonTestDto.GsonTestInnerDto inDto = new GsonTestDto.GsonTestInnerDto("inDtoName");
+        GsonTestDto dto = new GsonTestDto("dtoName", inDto);
+        System.out.println("[[[dto = " + dto);
+
+        String toJson = new Gson().toJson(dto);
+        System.out.println("[[[toJson = " + toJson);
+    }
+
+    @Test
+    public void testMapListMapAndPrettyPrinting() {
+        Map<String, List<Map<String, String>>> mlm = new HashMap<>();
+        List<Map<String, String>> inList1 = new ArrayList<>();
+        List<Map<String, String>> inList2 = new ArrayList<>();
+        Map<String, String> inMap1 = new HashMap<>();
+        Map<String, String> inMap2 = new HashMap<>();
+        Map<String, String> inMap3 = new HashMap<>();
+
+        inMap1.put("aaa","111");
+        inMap1.put("bbb","222");
+        inMap2.put("ccc","333");
+        inMap2.put("ddd","444");
+        inMap3.put("eee","555");
+        inList1.add(inMap1);
+        inList1.add(inMap2);
+        inList2.add(inMap3);
+        mlm.put("first",inList1);
+        mlm.put("seconds",inList2);
+
+        System.out.println("[[[mlm = " + mlm);
+        System.out.println("[[[toJson = " + new Gson().toJson(mlm));
+
+        Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
+        System.out.println("[[[prettyGson.toJson(mlm) = " + prettyGson.toJson(mlm));
+    }
+
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
@@ -59,6 +96,20 @@ public class GsonTest {
         private int id;
         private Date date;
         private LocalDate localDate;
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    static class GsonTestDto {
+        private String name;
+        private GsonTestInnerDto gsonTestInnerDto;
+        @Data
+        @AllArgsConstructor
+        @NoArgsConstructor
+        static class GsonTestInnerDto {
+            private String name;
+        }
     }
 
     public Gson gson() {
