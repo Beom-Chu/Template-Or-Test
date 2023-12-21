@@ -54,8 +54,8 @@ public class GsonTest {
 
     @Test
     public void testInnerClassSerialize() {
-        GsonTestDto.GsonTestInnerDto inDto = new GsonTestDto.GsonTestInnerDto("inDtoName");
-        GsonTestDto dto = new GsonTestDto("dtoName", inDto);
+        GsonTestDto.GsonTestInnerDto inDto = new GsonTestDto.GsonTestInnerDto("inDtoName",null);
+        GsonTestDto dto = new GsonTestDto("dtoName", null, inDto);
         System.out.println("[[[dto = " + dto);
 
         String toJson = new Gson().toJson(dto);
@@ -63,7 +63,19 @@ public class GsonTest {
     }
 
     @Test
-    public void testMapListMapAndPrettyPrinting() {
+    public void testSerializeNull() {
+        GsonTestDto.GsonTestInnerDto inDto = new GsonTestDto.GsonTestInnerDto("inDtoName",null);
+        GsonTestDto dto = new GsonTestDto("dtoName", null, inDto);
+
+        System.out.println("[[[dto = " + dto);
+
+        Gson gson = new GsonBuilder().serializeNulls().setPrettyPrinting().create();
+        String toJson = gson.toJson(dto);
+
+        System.out.println("[[[SerializeNull = " + toJson);
+    }
+
+    public Map<String, List<Map<String, String>>> getTestMlm() {
         Map<String, List<Map<String, String>>> mlm = new HashMap<>();
         List<Map<String, String>> inList1 = new ArrayList<>();
         List<Map<String, String>> inList2 = new ArrayList<>();
@@ -82,8 +94,20 @@ public class GsonTest {
         mlm.put("first",inList1);
         mlm.put("seconds",inList2);
 
+        return mlm;
+    }
+
+    @Test
+    public void testMapListMap() {
+        Map<String, List<Map<String, String>>> mlm = getTestMlm();
+
         System.out.println("[[[mlm = " + mlm);
         System.out.println("[[[toJson = " + new Gson().toJson(mlm));
+    }
+
+    @Test
+    public void testPrettyGson() {
+        Map<String, List<Map<String, String>>> mlm = getTestMlm();
 
         Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
         System.out.println("[[[prettyGson.toJson(mlm) = " + prettyGson.toJson(mlm));
@@ -103,12 +127,14 @@ public class GsonTest {
     @NoArgsConstructor
     static class GsonTestDto {
         private String name;
+        private String type;
         private GsonTestInnerDto gsonTestInnerDto;
         @Data
         @AllArgsConstructor
         @NoArgsConstructor
         static class GsonTestInnerDto {
             private String name;
+            private String type;
         }
     }
 
