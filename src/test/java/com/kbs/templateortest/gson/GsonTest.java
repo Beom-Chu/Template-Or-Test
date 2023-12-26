@@ -1,6 +1,7 @@
 package com.kbs.templateortest.gson;
 
 import com.google.gson.*;
+import com.google.gson.annotations.Since;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -113,6 +114,20 @@ public class GsonTest {
         System.out.println("[[[prettyGson.toJson(mlm) = " + prettyGson.toJson(mlm));
     }
 
+    @Test
+    public void testSince() {
+        SinceDto sinceDto = new SinceDto("aa", "bb");
+
+        /* version을 설정하면 Java 객체 필드 중 @Since 설정한 값 이상의 version만 직렬화 */
+        Gson gsonVer10 = new GsonBuilder().setVersion(1.0).create();
+        System.out.println("[[[gsonVer10.toJson(sinceDto) = " + gsonVer10.toJson(sinceDto));
+
+        /* 인스턴스에 버전을 설정하지 않으면, 모든 필드와 클래스를 버전 상관없이 직렬화하고 역직렬화 */
+        Gson gson = new Gson();
+        System.out.println("[[[gson.toJson(sinceDto) = " + gson.toJson(sinceDto));
+
+    }
+
     @Data
     @AllArgsConstructor
     @NoArgsConstructor
@@ -129,6 +144,7 @@ public class GsonTest {
         private String name;
         private String type;
         private GsonTestInnerDto gsonTestInnerDto;
+
         @Data
         @AllArgsConstructor
         @NoArgsConstructor
@@ -136,6 +152,16 @@ public class GsonTest {
             private String name;
             private String type;
         }
+    }
+
+    @Data
+    @AllArgsConstructor
+    @NoArgsConstructor
+    static class SinceDto {
+        @Since(1.0)
+        private String field;
+        @Since(1.1)
+        private String newField;
     }
 
     public Gson gson() {
