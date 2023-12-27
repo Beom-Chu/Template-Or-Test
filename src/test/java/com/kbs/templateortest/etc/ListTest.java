@@ -17,11 +17,17 @@ public class ListTest {
         list.add("aaa");
         list.add("bbb");
         list.add("ccc");
+        list.add("ddd");
+        list.add("eee");
+        System.out.println("[[[list = " + list);
 
+        list.remove("bbb");
+        System.out.println("[[[list = " + list);
+
+        list.remove(1);
         System.out.println("[[[list = " + list);
 
         list.clear();
-
         System.out.println("[[[list = " + list);
 
     }
