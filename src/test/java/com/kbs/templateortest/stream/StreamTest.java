@@ -8,10 +8,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -212,5 +209,42 @@ public class StreamTest {
                 .collect(Collectors.toList());
 
         System.out.println("[[[filterIds = " + filterIds);
+    }
+
+    @Test
+    @DisplayName("Stream으로 Map 반환 테스트")
+    public void testToMap() {
+        List<User> users = new ArrayList<>();
+        users.add(new User(2,"ljs"));
+        users.add(new User(1,"kbs"));
+        users.add(new User(3,"ksy"));
+
+        Map<Integer, String> map = users.stream()
+                .collect(Collectors.toMap(User::getId, User::getName));
+
+        System.out.println("[[[map = " + map);
+
+        for(Map.Entry e : map.entrySet()) {
+            System.out.println(e.getKey() + ":"+e.getValue());
+        }
+    }
+
+    @Test
+    @DisplayName("Stream으로 TreeMap 반환 테스트")
+    public void testToTreeMap() {
+        Map<String, String> map = new HashMap<>();
+        map.put("a", "aaa");
+        map.put("c", "ccc");
+        map.put("d", "ddd");
+        map.put("b", "bbb");
+
+        TreeMap<String, String> treeMap = map.entrySet().stream()
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (o1,o2)->o1, TreeMap::new));
+
+        for(Map.Entry e : treeMap.entrySet()) {
+            System.out.println(e.getKey() + ":"+e.getValue());
+        }
+
+
     }
 }
