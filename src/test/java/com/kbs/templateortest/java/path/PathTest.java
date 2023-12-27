@@ -20,4 +20,20 @@ public class PathTest {
 
         System.out.println("[[[str.contains(\"Number of Records\") = " + str.contains("Number of Records"));
     }
+
+    @Test
+    void testPath() {
+        Path path = Path.of("AA", "BB", "CCC");
+
+        System.out.println("[[[path.getFileName() = " + path.getFileName());
+        System.out.println("[[[path.getParent() = " + path.getParent());
+        System.out.println("[[[path.getRoot() = " + path.getRoot());
+
+
+        Path path2 = Path.of("AA");
+
+        System.out.println("[[[path.getFileName() = " + path2.getFileName());
+        System.out.println("[[[path.getParent() = " + path2.getParent());
+        System.out.println("[[[path.getRoot() = " + path2.getRoot());
+    }
 }
