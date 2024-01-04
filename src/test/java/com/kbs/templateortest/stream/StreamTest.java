@@ -1,8 +1,6 @@
 package com.kbs.templateortest.stream;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.apache.commons.lang3.ObjectUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
@@ -224,9 +222,7 @@ public class StreamTest {
 
         System.out.println("[[[map = " + map);
 
-        for(Map.Entry e : map.entrySet()) {
-            System.out.println(e.getKey() + ":"+e.getValue());
-        }
+        map.forEach((key, value) -> System.out.println(key + ":" + value));
     }
 
     @Test
@@ -241,10 +237,33 @@ public class StreamTest {
         TreeMap<String, String> treeMap = map.entrySet().stream()
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (o1,o2)->o1, TreeMap::new));
 
-        for(Map.Entry e : treeMap.entrySet()) {
-            System.out.println(e.getKey() + ":"+e.getValue());
-        }
+        treeMap.forEach((key, value) -> System.out.println(key + ":" + value));
+    }
 
+    @Test
+    @DisplayName("Stream으로 grouping, distinct 테스트")
+    public void testGroupingByDistinct() {
+        List<String> list = Arrays.asList("111", "222", "222", "333", "444", "111", "555");
+
+        Map<String, List<String>> collect = list.stream()
+                .collect(Collectors.groupingBy(String::new));
+        System.out.println("[[[collect = " + collect);
+
+        List<String> collect2 = new ArrayList<>(collect.keySet());
+        System.out.println("[[[collect2 = " + collect2);
+
+
+        List<String> collect3 = list.stream()
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.println("[[[collect3 = " + collect3);
+
+
+        List<User> users = Arrays.asList(new User(1, "aa"), new User(1, "aa"), new User(2, "bb"), new User(3, "cc"), new User(3, "cc"));
+        List<User> collect4 = users.stream()
+                .distinct()
+                .collect(Collectors.toList());
+        System.out.println("[[[collect4 = " + collect4);
 
     }
 }
