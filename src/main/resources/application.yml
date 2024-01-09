@@ -72,6 +72,11 @@ kafka:
     str: test.string.topic
     usr: test.user.topic
     constructorTest: test.constructor.topic
+
+retry:
+  max:
+    attempts: 5
+
 ---
 spring:
   config:
