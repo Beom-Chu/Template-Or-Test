@@ -114,4 +114,50 @@ public class ListTest {
         }
         */
     }
+
+    @Test
+    public void testSorting() {
+        LinkedList<String> list = new LinkedList<>();
+        list.add("aaa");
+        list.add("ccc");
+        list.add("eee");
+        list.add("bbb");
+        list.add("ddd");
+        System.out.println("[[[list = " + list);
+
+        TreeSet<String> set = new TreeSet<>();
+        set.add("aaa");
+        set.add("ccc");
+        set.add("eee");
+        set.add("bbb");
+        set.add("ddd");
+        System.out.println("[[[set = " + set);
+
+        PriorityQueue<Object> que = new PriorityQueue<>();
+    }
+    
+    @Test
+    public void testClone() {
+        LinkedList<String> list = new LinkedList<>();
+        list.add("aaa");
+        list.add("ccc");
+        list.add("eee");
+        list.add("bbb");
+        list.add("ddd");
+
+        LinkedList<String> clone = (LinkedList<String>) list.clone();
+        clone.remove(0);
+        clone.remove(0);
+        clone.set(0,"123");
+
+        System.out.println("[[[list = " + list);
+        System.out.println("[[[clone = " + clone);
+
+        LinkedList<String> newList = new LinkedList<>(list);
+        newList.remove(0);
+        newList.remove(0);
+
+        System.out.println("[[[list = " + list);
+        System.out.println("[[[newList = " + newList);
+    }
 }
