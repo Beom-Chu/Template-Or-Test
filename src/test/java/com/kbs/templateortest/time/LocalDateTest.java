@@ -8,6 +8,8 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.TemporalAdjusters;
+import java.time.temporal.WeekFields;
+import java.util.Locale;
 
 public class LocalDateTest {
 
@@ -116,5 +118,20 @@ public class LocalDateTest {
 
         System.out.println("[[[effectiveDateFrom = " + effectiveDateFrom);
         System.out.println("[[[effectiveDateTo = " + effectiveDateTo);
+    }
+
+    @Test
+    @DisplayName("WeekFields를 활용해서 특정년도의 주차수를 구하기")
+    public void testWeekFields() {
+
+        LocalDate prevWeekDate = LocalDate.now().minusWeeks(1);
+        WeekFields weekFields = WeekFields.of(Locale.getDefault());
+
+        String standardWeek = "" + prevWeekDate.getYear() + prevWeekDate.get(weekFields.weekOfWeekBasedYear());
+
+        String format = String.format("%d%02d", prevWeekDate.getYear(), prevWeekDate.get(weekFields.weekOfWeekBasedYear()));
+
+        System.out.println("[[[standardWeek = " + standardWeek);
+        System.out.println("[[[format = " + format);
     }
 }
