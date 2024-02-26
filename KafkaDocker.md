@@ -4,7 +4,7 @@ kafka의 경우 Zookeper, kafka, kafka-ui 서비스를 모두 띄워주어야 �
 
 Docker-compose 알아보기 : (https://github.com/Beom-Chu/Study/blob/main/etc/Docker%20Compose.md)
 
-1. Docker-compose yaml 파일 생성
+1. docker-compose-kafka yaml 파일 생성
  ```yaml
 version: '2'
 services:
@@ -47,7 +47,7 @@ services:
 ```
 2. docker-compose 서비스 실행
 
-    docker-compose.yml 파일이 있는 경로에서 아래 명령어 실행
+    docker-compose-kafka.yml 파일이 있는 경로에서 아래 명령어 실행
 ```shell
-$ docker-compose up
+$ docker-compose -f docker-compose-kafka.yml up
 ```
