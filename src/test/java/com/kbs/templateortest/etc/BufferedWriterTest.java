@@ -28,7 +28,12 @@ public class BufferedWriterTest {
         printBufferedWriter(strings);
         long writerTime = System.currentTimeMillis() - writerStart;
 
-        // println보다 BufferedWriter가 2배 이상 빠름.
+        // println보다 BufferedWriter가 훨씬 빠름
+//        strings = {ArrayList@1953}  size = 1000000
+//        printlnStart = 1709190866104
+//        printlnTime = 2539
+//        writerStart = 1709190868643
+//        writerTime = 894
 
         System.out.println("[[[printlnTime = " + printlnTime);
         System.out.println("[[[writerTime = " + writerTime);
