@@ -33,6 +33,7 @@ dependencies {
     // lombok
     implementation 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
 
     // retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
