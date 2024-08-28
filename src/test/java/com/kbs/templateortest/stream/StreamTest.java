@@ -264,6 +264,29 @@ public class StreamTest {
                 .distinct()
                 .collect(Collectors.toList());
         System.out.println("[[[collect4 = " + collect4);
+    }
+
+    @Test
+    @DisplayName("stream으로 flatMap 테스트")
+    void testFlatMap() {
+
+        List<String> list = List.of("abc", "def");
+        System.out.println(list);
+
+        // 리스트에 담긴 문자열을 하나의 문자로 분리해서 리스트에 담기
+
+        // flatMap을 사용하지 않으면 2차원 배열로 담김
+        List<List<String>> list2 = list.stream()
+                .map(o -> Arrays.stream(o.split("")).collect(Collectors.toList()))
+                .collect(Collectors.toList());
+        System.out.println(list2);
+
+        // flatMap을 사용하면 평탄화가 되어 1차원 배열로 변환
+        List<String> list3 = list.stream()
+                .map(o -> Arrays.stream(o.split("")).collect(Collectors.toList()))
+                .flatMap(List::stream)
+                .collect(Collectors.toList());
+        System.out.println(list3);
 
     }
 }
