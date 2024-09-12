@@ -50,6 +50,26 @@ public class ListTest {
     }
 
     @Test
+    void test3() {
+        List<Integer> list = List.of(1, 2, 3, 4, 5);
+        list.stream()
+                .map(o -> o * 2)
+                .forEach(System.out::println);
+
+        System.out.println();
+
+        Optional<String> optional = Optional.ofNullable(null);
+        String result = optional.orElseGet(() -> "No Data");
+        System.out.println(result);
+
+        System.out.println();
+
+        list.stream()
+                .sorted((i1, i2) -> i2.compareTo(i1))
+                .forEach(System.out::println);
+    }
+
+    @Test
     public void speedTest() {
         List<Integer> list = new ArrayList<>();
         for (int i = 0; i < 700; i++) {
@@ -57,7 +77,7 @@ public class ListTest {
         }
 
         long st = System.currentTimeMillis();
-        for(Integer i : list) {
+        for (Integer i : list) {
             System.out.println(LocalDateTime.now() + "[[[i = " + i);
         }
 
@@ -75,6 +95,7 @@ public class ListTest {
 
         System.out.println("[[[list = " + list);
     }
+
     @Test
     public void testInputListNull() {
         List<String> list = new ArrayList<>();
@@ -135,7 +156,7 @@ public class ListTest {
 
         PriorityQueue<Object> que = new PriorityQueue<>();
     }
-    
+
     @Test
     public void testClone() {
         LinkedList<String> list = new LinkedList<>();
@@ -148,7 +169,7 @@ public class ListTest {
         LinkedList<String> clone = (LinkedList<String>) list.clone();
         clone.remove(0);
         clone.remove(0);
-        clone.set(0,"123");
+        clone.set(0, "123");
 
         System.out.println("[[[list = " + list);
         System.out.println("[[[clone = " + clone);
@@ -159,5 +180,19 @@ public class ListTest {
 
         System.out.println("[[[list = " + list);
         System.out.println("[[[newList = " + newList);
+    }
+
+    @Test
+    void testListEquals() {
+        List<String> list1 = List.of("a", "b", "c");
+        List<String> list2 = new ArrayList<>(List.of("a", "c", "b"));
+        List<String> list3 = List.of("a", "b", "c");
+
+        System.out.println("list1.equals(list2) = " + list1.equals(list2));
+        System.out.println("list1.equals(list3) = " + list1.equals(list3));
+
+        list2.sort(Comparator.naturalOrder());
+        System.out.println("정렬 후 => list1.equals(list2) = " + list1.equals(list2));
+        // List의 순서가 일치해야 List equals가 같게 나옴
     }
 }
