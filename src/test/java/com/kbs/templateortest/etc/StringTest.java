@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import org.junit.jupiter.api.Test;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import java.time.LocalDateTime;
@@ -212,5 +213,42 @@ public class StringTest {
         System.out.println("[[[s.contains(\"1\") = " + s.contains("1"));
         System.out.println("[[[s.indexOf(\"12\") = " + s.indexOf("12"));
         System.out.println("[[[s.indexOf(\"45\") = " + s.indexOf("45"));
+    }
+
+    @Test
+    public void testIsEmpty() {
+        String s = "abc";
+        String sNull = null;
+
+        try {
+            System.out.println("[[[s.isEmpty()");
+            System.out.println(s.isEmpty());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            System.out.println("[[[sNull.isBlank()");
+            System.out.println(sNull.isBlank());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            System.out.println("[[[sNull.isEmpty()");
+            System.out.println(sNull.isEmpty());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            System.out.println("[[[ObjectUtil.isEmpty(sNull)");
+            System.out.println(ObjectUtils.isEmpty(sNull));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        try {
+            System.out.println("[[[ObjectUtil.isEmpty(s)");
+            System.out.println(ObjectUtils.isEmpty(s));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
